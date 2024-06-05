@@ -10,7 +10,6 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  *  - 'spring-cloud-starter-netflix-eureka-server' 의존성을 추가한 경우 어노테이션을 사용하지 않아도 자동 등록
  */
 @EnableDiscoveryClient
-
 @SpringBootApplication
 public class UserServiceApplication {
 
