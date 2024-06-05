@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: ecommerce
+
+server:
+  # 8761 포트를 사용하여 Eureka 서버 기동
+  port: 8761
+
+eureka:
+  client:
+    # eureka 서버에 등록할 필요가 없으므로 아래와 같이 설정
+    register-with-eureka: false
+    fetch-registry: false
