@@ -8,10 +8,10 @@ import org.springframework.context.annotation.Configuration;
 /**
  * JAVA code를 사용하여 route 관련 설정 가능
  */
-@Configuration
+//@Configuration
 public class FilterConfig {
 
-    @Bean
+//    @Bean
     public RouteLocator gatewayRoutes(RouteLocatorBuilder builder) {
 
         /**
