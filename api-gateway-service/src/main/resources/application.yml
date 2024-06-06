@@ -13,9 +13,10 @@ spring:
            uri: http://localhost:8081    # URI ??
            predicates:                   # ?? ??
              - Path=/first-service/**
-           filters:
+           filters:                      # ?? ??
             - AddRequestHeader=first-service, first-service-request
             - AddResponseHeader=first-service, first-service-response
+
         - id: second-service
           uri: http://localhost:8082
           predicates:
