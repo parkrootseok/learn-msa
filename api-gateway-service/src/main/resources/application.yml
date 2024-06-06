@@ -9,11 +9,11 @@ spring:
     gateway:
       # route ?? ??
       routes:
-        -  id: first-service             # ID ??
-           uri: http://localhost:8081    # URI ??
-           predicates:                   # ?? ??
+        - id: first-service             # ID ??
+          uri: http://localhost:8081    # URI ??
+          predicates:                   # ?? ??
              - Path=/first-service/**
-           filters:                      # ?? ??
+          filters:                      # ?? ??
             - AddRequestHeader=first-service, first-service-request
             - AddResponseHeader=first-service, first-service-response
 
