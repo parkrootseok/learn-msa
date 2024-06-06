@@ -8,11 +8,14 @@ server:
   port: 0
 
 eureka:
+
   instance:
+
     # instance-id 설정
     # - 기본적으로 yml파일에 있는 application name과 port 번호를 참조하여 인스터스 식별 수행
     # - random Port를 사용하기 위해 0번으로 설정하면 동일한 인스턴스로 식별하기 때문에 추가 설정 필요
     instance-id: ${spring.cloud.client.hostname}:${spring.application.instance_id:${random.value}}
+
   client:
 
     # Eureka 서버 등록 설정
