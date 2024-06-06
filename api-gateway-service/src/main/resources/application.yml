@@ -8,13 +8,13 @@ spring:
   cloud:
     gateway:
 
-      # route ?? ??
+      # route 객체 등록
       routes:
-        - id: first-service             # ID ??
-          uri: http://localhost:8081    # URI ??
-          predicates:                   # ?? ??
+        - id: first-service             # ID 설정
+          uri: http://localhost:8081    # URI 설정
+          predicates:                   # 조건 설정
              - Path=/first-service/**
-          filters:                      # ?? ??
+          filters:                      # 필터 추가
             - AddRequestHeader=first-service, first-service-request
             - AddResponseHeader=first-service, first-service-response
 
