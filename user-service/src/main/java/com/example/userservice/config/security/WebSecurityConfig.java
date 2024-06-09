@@ -36,7 +36,10 @@ public class WebSecurityConfig {
     @Bean
     protected SecurityFilterChain configure(HttpSecurity httpSecurity) throws Exception {
 
-        return httpSecurity.csrf(AbstractHttpConfigurer::disable)
+        return httpSecurity
+
+                // CSRF 비활성화 (RESTful 방식은 무상태성을 가지므로 불필요)
+                .csrf(AbstractHttpConfigurer::disable)
 
                 // H2 DB 사용을 위해 추가
                 .headers(
