@@ -1,6 +1,6 @@
 spring:
   application:
-    name: ecommerce
+    name: discovery-service
 
 server:
   # 8761 포트를 사용하여 Eureka 서버 기동
