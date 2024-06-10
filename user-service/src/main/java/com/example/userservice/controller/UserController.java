@@ -29,14 +29,12 @@ public class UserController {
     private final Environment env;
     private final GreetingVO greetingVO;
     private final UserService userService;
-    private final ModelMapper mapper;
 
     @Autowired
-    public UserController(Environment env, GreetingVO greetingVO, UserService userService, ModelMapper mapper) {
+    public UserController(Environment env, GreetingVO greetingVO, UserService userService) {
         this.env = env;
         this.greetingVO = greetingVO;
         this.userService = userService;
-        this.mapper = mapper;
     }
 
     @GetMapping("/health-check")
@@ -56,6 +54,9 @@ public class UserController {
     @PostMapping("/users")
     public ResponseEntity<CreateUserResponse> createUser(@RequestBody CreateUserRequest createUserRequest) {
 
+        ModelMapper mapper = new ModelMapper();
+        mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+
         UserDto createUserDto = userService.createUser(mapper.map(createUserRequest, UserDto.class));
         CreateUserResponse createUserResponse = mapper.map(createUserDto, CreateUserResponse.class);
 
@@ -68,6 +69,9 @@ public class UserController {
     @GetMapping("/users/{userId}")
     public ResponseEntity<GetUserResponse> getUser(@PathVariable("userId") String userId) {
 
+        ModelMapper mapper = new ModelMapper();
+        mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+
         UserDto user = userService.getUserByUserId(userId);
         GetUserResponse getUserResponse = mapper.map(user, GetUserResponse.class);
         return ResponseEntity
@@ -78,6 +82,9 @@ public class UserController {
 
     @GetMapping("/users")
     public ResponseEntity<List<GetUserResponse>> getUsers() {
+
+        ModelMapper mapper = new ModelMapper();
+        mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 
         Iterable<User> users = userService.getAllUser();
         List<GetUserResponse> getUserResponses = new ArrayList<>();
