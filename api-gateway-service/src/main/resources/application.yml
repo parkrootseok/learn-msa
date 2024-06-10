@@ -8,42 +8,51 @@ spring:
   cloud:
     gateway:
 
-      # Global Filter 적용
+      # Global Filter 추가
       default-filters:
         - name: GlobalFilter
-
-          # GlobalFilter Config 초기값 설정
           args:
             baseMessage: Spring Cloud Gateway Global Filter
             preLogger: true
             postLogger: true
 
       # route 객체 등록
+      # ID 설정        - id:
+      # URI 설정         uri: http://localhost:${port} or lb://instance-id
+      # 조건 설정        predicates:
+      #                   - Path=${uri}
+      # 필터 추가        filters:
+      #                   - name: ${filter-class-name}
+      #                     args:1
       routes:
-        - id: first-service             # ID 설정
-#          uri: http://localhost:8081    # URI 설정
-          uri: lb://FIRST-SERVICE       # URI 설정 (Eureka Server에 등록된 인스턴스로 매핑하기 위해 lb://application-name으로 변경)
-          predicates:                   # 조건 설정
-            - Path=/first-service/**
-          filters:                      # 필터 추가
-#            - AddRequestHeader=first-service, first-service-request
-#            - AddResponseHeader=first-service, first-service-response
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/user-service/**
 
-            # Class로 정의한 CustomFilter를 추가
-            - CustomFilter
+        - id: catalog-service
+          uri: lb://CATALOG-SERVICE
+          predicates:
+            - Path=/catalog-service/**
+
+        - id: order-service
+          uri: lb://ORDER-SERVICE
+          predicates:
+            - Path=/order-service/**
+
+        - id: first-service
+          uri: lb://FIRST-SERVICE
+          predicates:
+            - Path=/first-service/**
+          filters:
+            - name: CustomFilter
 
         - id: second-service
-#          uri: http://localhost:8082
           uri: lb://SECOND-SERVICE
           predicates:
             - Path=/second-service/**
           filters:
-#            - AddRequestHeader=second-service, second-service-request
-#            - AddResponseHeader=second-service, second-service-response
-
-            - CustomFilter
-
-            # 초기값을 전달하기 위해 name 속성 사용
+            - name: CustomFilter
             - name: LoggingFilter
               args:
                 baseMessage: Hi, there.
