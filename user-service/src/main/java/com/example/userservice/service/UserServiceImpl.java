@@ -1,8 +1,14 @@
 package com.example.userservice.service;
 
+import com.example.userservice.error.ErrorCode;
+import com.example.userservice.exception.NotExistsUserException;
 import com.example.userservice.model.dto.UserDto;
 import com.example.userservice.model.entity.User;
+import com.example.userservice.model.response.GetOrderResponse;
 import com.example.userservice.repository.UserRepository;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
@@ -36,6 +42,28 @@ public class UserServiceImpl implements UserService {
 
         return mapper.map(user, UserDto.class);
 
+    }
+
+    @Override
+    public UserDto getUserByUserId(String userId) {
+
+        User user =  userRepository.findByUserId(userId);
+
+        if (Objects.isNull(user)) {
+            throw new NotExistsUserException(ErrorCode.NOT_EXISTS_USER);
+        }
+
+        UserDto userDto = new ModelMapper().map(user, UserDto.class);
+        List<GetOrderResponse> orders = new ArrayList<>();
+        userDto.setOrders(orders);
+
+        return userDto;
+
+    }
+
+    @Override
+    public Iterable<User> getAllUser() {
+        return userRepository.findAll();
     }
 
 }
