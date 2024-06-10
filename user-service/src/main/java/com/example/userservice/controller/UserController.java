@@ -8,9 +8,9 @@ import com.example.userservice.model.response.GetUserResponse;
 import com.example.userservice.service.UserService;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,19 +23,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/user-service")
+@RequiredArgsConstructor
 public class UserController {
 
     private final Environment env;
     private final UserService userService;
 
-    @Autowired
-    public UserController(Environment env, UserService userService) {
-        this.env = env;
-        this.userService = userService;
-    }
 
     @GetMapping("/health-check")
-    private String status() {
+    public String status() {
 
         return String.format("It's working in user service on PORT %s", env.getProperty("local.server.port"));
 
@@ -77,14 +73,14 @@ public class UserController {
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 
         Iterable<User> users = userService.getAllUser();
-        List<GetUserResponse> getUserResponses = new ArrayList<>();
+        List<GetUserResponse> response = new ArrayList<>();
         users.forEach(
-                user -> getUserResponses.add(mapper.map(user, GetUserResponse.class))
+                user -> response.add(mapper.map(user, GetUserResponse.class))
         );
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(getUserResponses);
+                .body(response);
 
     }
 
