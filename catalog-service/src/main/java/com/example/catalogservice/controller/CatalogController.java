@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class CatalogController {
 
-    private Environment env;
+    private final Environment env;
     private final CatalogService catalogService;
 
     @GetMapping("/health-check")
