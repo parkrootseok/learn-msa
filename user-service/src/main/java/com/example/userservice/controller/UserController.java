@@ -5,7 +5,6 @@ import com.example.userservice.model.entity.User;
 import com.example.userservice.model.request.CreateUserRequest;
 import com.example.userservice.model.response.CreateUserResponse;
 import com.example.userservice.model.response.GetUserResponse;
-import com.example.userservice.model.vo.GreetingVO;
 import com.example.userservice.service.UserService;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,13 +26,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     private final Environment env;
-    private final GreetingVO greetingVO;
     private final UserService userService;
 
     @Autowired
-    public UserController(Environment env, GreetingVO greetingVO, UserService userService) {
+    public UserController(Environment env, UserService userService) {
         this.env = env;
-        this.greetingVO = greetingVO;
         this.userService = userService;
     }
 
@@ -41,13 +38,6 @@ public class UserController {
     private String status() {
 
         return String.format("It's working in user service on PORT %s", env.getProperty("local.server.port"));
-
-    }
-
-    @GetMapping("/welcome")
-    public String welcome() {
-
-        return greetingVO.getMessage();
 
     }
 

@@ -41,7 +41,3 @@ eureka:
       # 아래 설정한 Eureka 서버에 인스턴스 등록
       defaultZone: http://127.0.0.1:8761/eureka
 
-greeting:
-  message: Welcome to the Simple E-commerce.
-
-
