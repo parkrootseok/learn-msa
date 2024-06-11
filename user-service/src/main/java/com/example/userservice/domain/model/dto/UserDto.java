@@ -1,6 +1,6 @@
-package com.example.userservice.model.dto;
+package com.example.userservice.domain.model.dto;
 
-import com.example.userservice.model.response.GetOrderResponse;
+import com.example.userservice.domain.model.response.GetOrderResponse;
 import java.util.Date;
 import java.util.List;
 import lombok.Data;

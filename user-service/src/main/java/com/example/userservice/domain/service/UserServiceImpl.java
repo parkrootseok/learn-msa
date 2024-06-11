@@ -1,11 +1,11 @@
-package com.example.userservice.service;
+package com.example.userservice.domain.service;
 
-import com.example.userservice.error.ErrorCode;
-import com.example.userservice.exception.NotExistsUserException;
-import com.example.userservice.model.dto.UserDto;
-import com.example.userservice.model.entity.UserEntity;
-import com.example.userservice.model.response.GetOrderResponse;
-import com.example.userservice.repository.UserRepository;
+import com.example.userservice.common.error.ErrorCode;
+import com.example.userservice.domain.exception.NotExistsUserException;
+import com.example.userservice.domain.model.dto.UserDto;
+import com.example.userservice.domain.model.entity.UserEntity;
+import com.example.userservice.domain.model.response.GetOrderResponse;
+import com.example.userservice.domain.repository.UserRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;

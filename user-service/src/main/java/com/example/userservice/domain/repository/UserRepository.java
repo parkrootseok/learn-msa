@@ -1,6 +1,6 @@
-package com.example.userservice.repository;
+package com.example.userservice.domain.repository;
 
-import com.example.userservice.model.entity.UserEntity;
+import com.example.userservice.domain.model.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<UserEntity, Long> {

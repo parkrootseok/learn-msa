@@ -1,4 +1,4 @@
-package com.example.userservice.error;
+package com.example.userservice.common.error;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

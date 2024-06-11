@@ -1,4 +1,4 @@
-package com.example.userservice.model.request;
+package com.example.userservice.domain.model.request;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;

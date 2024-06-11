@@ -1,7 +1,8 @@
-package com.example.userservice.filter.security;
+package com.example.userservice.common.filter.security;
 
-import com.example.userservice.model.request.LoginUserRequest;
-import com.example.userservice.service.UserService;
+import com.example.userservice.domain.model.dto.UserDto;
+import com.example.userservice.domain.model.request.LoginUserRequest;
+import com.example.userservice.domain.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -15,6 +16,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Slf4j
@@ -72,6 +74,10 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
             FilterChain chain,
             Authentication authResult
     ) throws IOException, ServletException {
+
+//        String email = ((User) authResult.getPrincipal()).getUsername();
+//        UserDto userDto = userService.getUserDtoByEmail(email);
+
     }
 
 }

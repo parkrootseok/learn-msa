@@ -1,11 +1,11 @@
-package com.example.userservice.controller;
+package com.example.userservice.domain.controller;
 
-import com.example.userservice.model.dto.UserDto;
-import com.example.userservice.model.entity.UserEntity;
-import com.example.userservice.model.request.CreateUserRequest;
-import com.example.userservice.model.response.CreateUserResponse;
-import com.example.userservice.model.response.GetUserResponse;
-import com.example.userservice.service.UserService;
+import com.example.userservice.domain.model.dto.UserDto;
+import com.example.userservice.domain.model.entity.UserEntity;
+import com.example.userservice.domain.model.request.CreateUserRequest;
+import com.example.userservice.domain.model.response.CreateUserResponse;
+import com.example.userservice.domain.model.response.GetUserResponse;
+import com.example.userservice.domain.service.UserService;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
