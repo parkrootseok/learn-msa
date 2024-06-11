@@ -3,7 +3,7 @@ package com.example.userservice.service;
 import com.example.userservice.error.ErrorCode;
 import com.example.userservice.exception.NotExistsUserException;
 import com.example.userservice.model.dto.UserDto;
-import com.example.userservice.model.entity.User;
+import com.example.userservice.model.entity.UserEntity;
 import com.example.userservice.model.response.GetOrderResponse;
 import com.example.userservice.repository.UserRepository;
 import java.util.ArrayList;
@@ -13,7 +13,10 @@ import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,7 +24,28 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
-    private final BCryptPasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+
+        UserEntity userEntity = userRepository.findByEmail(email);
+
+        if (Objects.isNull(userEntity)) {
+            throw new NotExistsUserException(ErrorCode.NOT_EXISTS_USER);
+        }
+
+        return new User(
+                userEntity.getEmail(),
+                userEntity.getEncryptedPassword(),
+                true,
+                true,
+                true,
+                true,
+                new ArrayList<>()
+        );
+
+    }
 
     @Override
     public UserDto createUser(UserDto userDto) {
@@ -30,25 +54,25 @@ public class UserServiceImpl implements UserService {
         ModelMapper mapper = new ModelMapper();
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 
-        User user = mapper.map(userDto, User.class);
-        user.setEncryptedPassword(passwordEncoder.encode(userDto.getPassword()));
+        UserEntity userEntity = mapper.map(userDto, UserEntity.class);
+        userEntity.setEncryptedPassword(passwordEncoder.encode(userDto.getPassword()));
 
-        userRepository.save(user);
+        userRepository.save(userEntity);
 
-        return mapper.map(user, UserDto.class);
+        return mapper.map(userEntity, UserDto.class);
 
     }
 
     @Override
     public UserDto getUserByUserId(String userId) {
 
-        User user =  userRepository.findByUserId(userId);
+        UserEntity userEntity =  userRepository.findByUserId(userId);
 
-        if (Objects.isNull(user)) {
+        if (Objects.isNull(userEntity)) {
             throw new NotExistsUserException(ErrorCode.NOT_EXISTS_USER);
         }
 
-        UserDto userDto = new ModelMapper().map(user, UserDto.class);
+        UserDto userDto = new ModelMapper().map(userEntity, UserDto.class);
         List<GetOrderResponse> orders = new ArrayList<>();
         userDto.setOrders(orders);
 
@@ -57,7 +81,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Iterable<User> getAllUser() {
+    public Iterable<UserEntity> getAllUser() {
         return userRepository.findAll();
     }
 
