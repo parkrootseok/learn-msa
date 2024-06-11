@@ -1,6 +1,6 @@
 package com.example.userservice.common.exception;
 
-import com.example.userservice.common.error.ErrorCode;
+import com.example.userservice.common.constants.error.ErrorCode;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

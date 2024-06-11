@@ -1,6 +1,6 @@
 package com.example.userservice.domain.service;
 
-import com.example.userservice.common.error.ErrorCode;
+import com.example.userservice.common.constants.error.ErrorCode;
 import com.example.userservice.domain.exception.NotExistsUserException;
 import com.example.userservice.domain.model.dto.UserDto;
 import com.example.userservice.domain.model.entity.UserEntity;
