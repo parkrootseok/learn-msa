@@ -85,4 +85,20 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll();
     }
 
+    @Override
+    public UserDto getUserDtoByEmail(String email) {
+
+        ModelMapper mapper = new ModelMapper();
+        mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+
+        UserEntity userEntity = userRepository.findByEmail(email);
+
+        if (Objects.isNull(userEntity)) {
+            throw new NotExistsUserException(ErrorCode.NOT_EXISTS_USER);
+        }
+
+        return mapper.map(userEntity, UserDto.class);
+
+    }
+
 }

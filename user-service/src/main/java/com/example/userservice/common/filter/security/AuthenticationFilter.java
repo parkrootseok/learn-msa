@@ -75,8 +75,8 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
             Authentication authResult
     ) throws IOException, ServletException {
 
-//        String email = ((User) authResult.getPrincipal()).getUsername();
-//        UserDto userDto = userService.getUserDtoByEmail(email);
+        String email = ((User) authResult.getPrincipal()).getUsername();
+        UserDto userDto = userService.getUserDtoByEmail(email);
 
     }
 
