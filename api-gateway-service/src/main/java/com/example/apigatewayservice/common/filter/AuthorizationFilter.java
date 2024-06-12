@@ -2,13 +2,11 @@ package com.example.apigatewayservice.common.filter;
 
 import com.example.apigatewayservice.common.constants.error.ErrorCode;
 import com.example.apigatewayservice.common.util.JwtUtil;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
@@ -22,6 +20,8 @@ public class AuthorizationFilter extends AbstractGatewayFilterFactory<Authorizat
     public static class Config {
 
     }
+
+    private static final String TOKEN_PREFIX = "Bearer ";
 
     private final JwtUtil jwtUtil;
 
@@ -41,9 +41,11 @@ public class AuthorizationFilter extends AbstractGatewayFilterFactory<Authorizat
                 return onError(exchange, ErrorCode.NOT_CONTAIN_AUTHORIZATION);
             }
 
-            // Authorization 가져오기
-            String authorization = request.getHeaders().get(HttpHeaders.AUTHORIZATION).get(0);
-            String accessToken = authorization.replace("Bearer ", "");
+            // token 가져오기
+            String accessToken = request.getHeaders()
+                    .get(HttpHeaders.AUTHORIZATION)
+                    .get(0)
+                    .replace(TOKEN_PREFIX, "");
 
             if (!jwtUtil.isValid(accessToken)) {
                 return onError(exchange, ErrorCode.INVALID_TOKEN);
