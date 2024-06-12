@@ -25,7 +25,7 @@ public class AuthorizationFilter extends AbstractGatewayFilterFactory<Authorizat
 
     private final JwtUtil jwtUtil;
 
-    public AuthorizationFilter(Environment env, JwtUtil jwtUtil) {
+    public AuthorizationFilter(JwtUtil jwtUtil) {
         super(Config.class);
         this.jwtUtil = jwtUtil;
     }
