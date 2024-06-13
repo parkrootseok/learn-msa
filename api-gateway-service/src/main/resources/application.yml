@@ -68,25 +68,6 @@ spring:
           predicates:
             - Path=/order-service/**
 
-        - id: first-service
-          uri: lb://FIRST-SERVICE
-          predicates:
-            - Path=/first-service/**
-          filters:
-            - name: CustomFilter
-
-        - id: second-service
-          uri: lb://SECOND-SERVICE
-          predicates:
-            - Path=/second-service/**
-          filters:
-            - name: CustomFilter
-            - name: LoggingFilter
-              args:
-                baseMessage: Hi, there.
-                preLogger: true
-                postLogger: true
-
 eureka:
   client:
     register-with-eureka: true
