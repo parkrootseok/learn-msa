@@ -40,6 +40,11 @@ eureka:
     service-url:
       # 아래 설정한 Eureka 서버에 인스턴스 등록
       defaultZone: http://127.0.0.1:8761/eureka
+
 logging:
   level:
     com.example.userservice: DEBUG
+
+# JWT 관련 환경 변수
+jwt:
+  secret: 1ba112e536012abca2dd7849949ec353599feb1c5c5615c1aa3bda5456bb30a513b1aed725c568d4e42407434d9c6bf69d4655d331c3495c052c8195af2340fc

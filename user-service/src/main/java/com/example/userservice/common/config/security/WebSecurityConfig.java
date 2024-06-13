@@ -1,6 +1,7 @@
 package com.example.userservice.common.config.security;
 
 import com.example.userservice.common.filter.security.AuthenticationFilter;
+import com.example.userservice.common.util.JwtUtil;
 import com.example.userservice.domain.service.UserService;
 import java.util.function.Supplier;
 import lombok.RequiredArgsConstructor;
@@ -36,8 +37,8 @@ public class WebSecurityConfig {
             "/health-check/**"
     };
 
-    private final Environment env;
     private final UserService userService;
+    private final JwtUtil jwtUtil;
 
     /**
      * Spring Security를 적용하지 않을 URI 설정
@@ -97,7 +98,7 @@ public class WebSecurityConfig {
     }
 
     private AuthenticationFilter getAuthenticationFilter(AuthenticationManager authenticationManager) {
-        return new AuthenticationFilter(authenticationManager, env, userService);
+        return new AuthenticationFilter(authenticationManager, userService, jwtUtil);
     }
 
 }

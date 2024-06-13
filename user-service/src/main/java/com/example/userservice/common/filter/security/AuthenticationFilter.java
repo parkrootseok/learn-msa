@@ -1,5 +1,6 @@
 package com.example.userservice.common.filter.security;
 
+import com.example.userservice.common.util.JwtUtil;
 import com.example.userservice.domain.model.dto.UserDto;
 import com.example.userservice.domain.model.request.LoginUserRequest;
 import com.example.userservice.domain.service.UserService;
@@ -11,7 +12,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -22,15 +22,15 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Slf4j
 public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
-    private Environment env;
     private UserService userService;
+    private JwtUtil jwtUtil;
 
     public AuthenticationFilter(
-            AuthenticationManager authenticationManager, Environment env, UserService userService
+            AuthenticationManager authenticationManager, UserService userService, JwtUtil jwtUtil
     ) {
         super(authenticationManager);
-        this.env = env;
         this.userService = userService;
+        this.jwtUtil = jwtUtil;
     }
 
     /**
@@ -73,10 +73,13 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
             HttpServletResponse response,
             FilterChain chain,
             Authentication authResult
-    ) throws IOException, ServletException {
+    ) {
 
         String email = ((User) authResult.getPrincipal()).getUsername();
         UserDto userDto = userService.getUserDtoByEmail(email);
+
+        String accessToken = jwtUtil.issueAccessToken(userDto.getUserId());
+        response.addHeader("Access-Token", accessToken);
 
     }
 
