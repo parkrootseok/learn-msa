@@ -8,4 +8,5 @@ spring:
     config:
       server:
         git:
-          uri: file:///Users/parkrootseok/Desktop/programming/git/repository/learn-msa
+          uri: https://github.com/parkrootseok/learn-msa
+          default-label: main
