@@ -18,6 +18,7 @@ public class ApiGatewayController {
 
         StringBuilder sb = new StringBuilder();
         sb.append("It's working in api gateway service. </br>");
+        sb.append("active profile: " + env.getProperty("profile.name")).append("</br>");
         sb.append("PORT(local.server.port): " + env.getProperty("local.server.port")).append("</br>");
         sb.append("PORT(server.port): " + env.getProperty("server.port")).append("</br>");
         sb.append("token secret: " + env.getProperty("jwt.secret")).append("</br>");
