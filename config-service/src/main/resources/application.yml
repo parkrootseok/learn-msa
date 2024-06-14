@@ -4,9 +4,17 @@ server:
 spring:
   application:
     name: config-service
+
+#  로컬에 있는 yml 파일을 가져오기 위한 설정
+#  profiles:
+#    active: native
+
   cloud:
     config:
+
       server:
+#        native:
+#          search-locations: file//${user.home}/yml 파일 위치
         git:
           # Repository 주소
           uri: https://github.com/parkrootseok/learn-msa
