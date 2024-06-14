@@ -5,7 +5,14 @@ spring:
   application:
     name: api-gateway-service
 
+  config:
+    import: optional:configserver:http://localhost:8888
+
   cloud:
+
+    config:
+      name: ecommerce
+
     gateway:
 
       # Global Filter 추가
@@ -61,6 +68,17 @@ spring:
             # 권한 확인 핉터
             - AuthorizationFilter
 
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/user-service/actuator/**
+            - Method=GET,POST
+          filters:
+            # 매번 새로운 요청으로 인식하기 위해 header 삭제
+            - RemoveRequestHeader=Cookie
+            # /user-service/(?<segment>.*)로 들어온 URI를 /$\{segment} 형태로 변환
+            - RewritePath=/user-service/(?<segment>.*), /$\{segment}
+
         - id: catalog-service
           uri: lb://CATALOG-SERVICE
           predicates:
@@ -78,6 +96,9 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka
 
-# JWT 관련 환경 변수
-jwt:
-  secret: 1ba112e536012abca2dd7849949ec353599feb1c5c5615c1aa3bda5456bb30a513b1aed725c568d4e42407434d9c6bf69d4655d331c3495c052c8195af2340fc
+# actuator 관련 설정
+management:
+  endpoints:
+    web:
+      exposure:
+        include: beans, refresh, health, httpexchanges

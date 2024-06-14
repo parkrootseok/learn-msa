@@ -6,6 +6,15 @@ spring:
   application:
     name: user-service
 
+  # 주입할 yml 파일명 설정
+  # - 기본값으로 application-name과 일치하는 yml 파일 주입
+  cloud:
+    config:
+      name: ecommerce
+
+  config:
+    import: optional:configserver:http://localhost:8888
+
   # H2 DATABASE 관련 설정
   h2:
     console:
@@ -45,6 +54,10 @@ logging:
   level:
     com.example.userservice: DEBUG
 
-# JWT 관련 환경 변수
-jwt:
-  secret: 1ba112e536012abca2dd7849949ec353599feb1c5c5615c1aa3bda5456bb30a513b1aed725c568d4e42407434d9c6bf69d4655d331c3495c052c8195af2340fc
+# actuator 관련 설정
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, beans
+
