@@ -27,13 +27,12 @@ import org.springframework.security.web.util.matcher.IpAddressMatcher;
 @RequiredArgsConstructor
 public class WebSecurityConfig {
 
-    public static final String ALLOWED_IP_ADDRESS = "222.108.165.237";
+    public static final String ALLOWED_IP_ADDRESS = "192.168.1.15";
     public static final String SUBNET = "/32";
     public static final IpAddressMatcher ALLOWED_IP_ADDRESS_MATCHER = new IpAddressMatcher(ALLOWED_IP_ADDRESS + SUBNET);
 
     private static final String[] WHITE_LIST = {
             "/h2-console/**",
-            "/actuator/info",
             "/health-check/**"
     };
 
@@ -69,6 +68,7 @@ public class WebSecurityConfig {
                 // 허용 IP 설정
                 .authorizeHttpRequests(
                         auth -> auth
+                                .requestMatchers("/actuator/**").permitAll()
                                 .requestMatchers("/**").access(this::hasIpAddress)
                                 .anyRequest()
                                 .authenticated()
