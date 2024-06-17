@@ -16,8 +16,8 @@ spring:
   rabbitmq:
     host: localhost
     port: 5672
-    username: guest
-    password: guest
+    username: admin
+    password: test1234
 
   # 주입할 yml 파일명 설정
   # - 기본값으로 application-name과 일치하는 yml 파일 주입
