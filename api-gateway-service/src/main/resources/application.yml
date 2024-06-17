@@ -11,6 +11,13 @@ spring:
   config:
     import: optional:configserver:http://localhost:8888
 
+  # Rabbit MQ 관련 설정
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: admin
+    password: test1234
+
   cloud:
 
     config:
@@ -104,4 +111,4 @@ management:
   endpoints:
     web:
       exposure:
-        include: beans, refresh, health, httpexchanges
+        include: beans, refresh, health, httpexchanges, busrefresh

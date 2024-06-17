@@ -9,6 +9,13 @@ spring:
 #  profiles:
 #    active: native
 
+  # Rabbit MQ 관련 설정
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: admin
+    password: test1234
+
   cloud:
     config:
 
@@ -21,3 +28,10 @@ spring:
 
           # 참조할 branch 정보 (기본값은 master)
           default-label: main
+
+# actuator 관련 설정
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, beans, busrefresh

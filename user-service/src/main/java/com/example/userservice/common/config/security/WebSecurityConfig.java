@@ -27,15 +27,13 @@ import org.springframework.security.web.util.matcher.IpAddressMatcher;
 @RequiredArgsConstructor
 public class WebSecurityConfig {
 
-    public static final String ALLOWED_IP_ADDRESS = "192.168.1.15";
     public static final String SUBNET = "/32";
-    public static final IpAddressMatcher ALLOWED_IP_ADDRESS_MATCHER = new IpAddressMatcher(ALLOWED_IP_ADDRESS + SUBNET);
-
     private static final String[] WHITE_LIST = {
             "/h2-console/**",
             "/health-check/**"
     };
 
+    private final Environment env;
     private final UserService userService;
     private final JwtUtil jwtUtil;
 
@@ -94,7 +92,8 @@ public class WebSecurityConfig {
     }
 
     private AuthorizationDecision hasIpAddress(Supplier<Authentication> authentication, RequestAuthorizationContext context) {
-        return new AuthorizationDecision(ALLOWED_IP_ADDRESS_MATCHER.matches(context.getRequest()));
+        System.out.println(env.getProperty("gateway.ip"));
+        return new AuthorizationDecision(new IpAddressMatcher(env.getProperty("gateway.ip") + SUBNET).matches(context.getRequest()));
     }
 
     private AuthenticationFilter getAuthenticationFilter(AuthenticationManager authenticationManager) {
