@@ -36,10 +36,12 @@ management:
       exposure:
         include: refresh, health, beans, busrefresh
 
-# 암호화 관련 설정 (대칭키 방식)
-#encrypt:
-#  key: 017a3dbbaece78ce0ceb
+# 암호화 관련 설정
 encrypt:
+#  대칭키 방식
+#  key: 017a3dbbaece78ce0ceb
+
+#  비대칭키 방식
   key-store:
     location: file://${user.home}/Desktop/programming/key-store/apiEncryptionKey.jks
     password: test1234
