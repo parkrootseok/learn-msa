@@ -37,5 +37,10 @@ management:
         include: refresh, health, beans, busrefresh
 
 # 암호화 관련 설정 (대칭키 방식)
+#encrypt:
+#  key: 017a3dbbaece78ce0ceb
 encrypt:
-  key: 017a3dbbaece78ce0ceb
+  key-store:
+    location: file://${user.home}/Desktop/programming/key-store/apiEncryptionKey.jks
+    password: test1234
+    alias: apiEncryptionKey
