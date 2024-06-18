@@ -3,7 +3,7 @@ spring:
     driver-class-name: org.h2.Driver
     url: jdbc:h2:mem:testdb
     username: sa
-    password: '{cipher}2a27c357b93a3f9657309a0303651210814acb534fac1df84fde5af3eb7aa734'
+    password: '{cipher}AQC28w/vFEG15u9dgbWi/Z8jewz/NlWK3xzNMKu29xAqh4pOrRmRED5IkwoWHBDxE2RY+lgcgekynnckh5q0ipHpl1X9uQK42xxf1WGq0D56DgmQhvnlAFiqaKJR4YKXJQHvw+1aJaLgzBJl0m4bM7HDO5aRIgUPD39fsy0C0KVCdUxu4NZzLdyRjjMtjCL+kweNv6pqERbpW9TqpbyTPJalcn6iMGgsP7U0HNhlExCt/z0mn6O9AgRoV41zHdkDU/zA91wTjyoONUu83DfmPjJVkP6Mi3iEtMbjBohvf9/j1TiAUQF21yPNJYenGDP1KWph0mKuZF2fO9o0bbT20qUdv59v9XsTbcW86hefDasIqVBXq9gtCIxYCTaEvpWaccI='
 
 # JWT 관련 환경 변수
 jwt:
