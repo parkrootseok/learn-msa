@@ -11,20 +11,10 @@ spring:
   config:
     import: optional:configserver:http://localhost:8888
 
-  # Rabbit MQ 관련 설정
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: admin
-    password: test1234
-
   cloud:
-
     config:
       name: ecommerce
-
     gateway:
-
       # Global Filter 추가
       default-filters:
         - name: GlobalFilter
@@ -32,7 +22,6 @@ spring:
             baseMessage: Spring Cloud Gateway Global Filter
             preLogger: true
             postLogger: true
-
       # route 객체 등록
       # ID 설정        - id:
       # URI 설정         uri: http://localhost:${port} or lb://instance-id
@@ -42,7 +31,6 @@ spring:
       #                   - name: ${filter-class-name}
       #                     args:1
       routes:
-
         - id: user-service
           uri: lb://USER-SERVICE
           predicates:
@@ -99,12 +87,6 @@ spring:
           predicates:
             - Path=/order-service/**
 
-eureka:
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://localhost:8761/eureka
 
 # actuator 관련 설정
 management:

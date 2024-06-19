@@ -1,7 +1,7 @@
-package com.example.userservice.common.config.security;
+package com.example.userservice.global.config.security;
 
-import com.example.userservice.common.filter.security.AuthenticationFilter;
-import com.example.userservice.common.util.JwtUtil;
+import com.example.userservice.global.filter.security.AuthenticationFilter;
+import com.example.userservice.infra.jwt.JwtUtil;
 import com.example.userservice.domain.service.UserService;
 import java.util.function.Supplier;
 import lombok.RequiredArgsConstructor;
@@ -92,7 +92,6 @@ public class WebSecurityConfig {
     }
 
     private AuthorizationDecision hasIpAddress(Supplier<Authentication> authentication, RequestAuthorizationContext context) {
-        System.out.println(env.getProperty("gateway.ip"));
         return new AuthorizationDecision(new IpAddressMatcher(env.getProperty("gateway.ip") + SUBNET).matches(context.getRequest()));
     }
 

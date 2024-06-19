@@ -1,30 +1,39 @@
 package com.example.userservice.domain.service;
 
-import com.example.userservice.common.constants.error.ErrorCode;
+import com.example.userservice.infra.openfeign.client.OrderServiceClient;
+import com.example.userservice.global.error.ErrorCode;
 import com.example.userservice.domain.exception.NotExistsUserException;
 import com.example.userservice.domain.model.dto.UserDto;
 import com.example.userservice.domain.model.entity.UserEntity;
 import com.example.userservice.domain.model.response.GetOrderResponse;
 import com.example.userservice.domain.repository.UserRepository;
+import feign.FeignException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
+import org.springframework.core.env.Environment;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    private final UserRepository userRepository;
+    private final Environment env;
+    private final RestTemplate restTemplate;
+    private final OrderServiceClient orderServiceClient;
     private final PasswordEncoder passwordEncoder;
+    private final UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -64,7 +73,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto getUserByUserId(String userId) {
+    public UserDto getUserByUserId(String userId) throws FeignException {
 
         UserEntity userEntity =  userRepository.findByUserId(userId);
 
@@ -73,7 +82,23 @@ public class UserServiceImpl implements UserService {
         }
 
         UserDto userDto = new ModelMapper().map(userEntity, UserDto.class);
-        List<GetOrderResponse> orders = new ArrayList<>();
+
+        /**
+         * RestTemplate 방식
+         */
+//        ResponseEntity<List<GetOrderResponse>> response = restTemplate
+//                .exchange(
+//                        String.format(env.getProperty("order-service.url.get-orders"), userId),
+//                        HttpMethod.GET,
+//                        null,
+//                        new ParameterizedTypeReference<List<GetOrderResponse>>() {}
+//                );
+//        List<GetOrderResponse> orders = response.getBody();
+
+        /**
+         * OpenFeign 방식
+         */
+        List<GetOrderResponse> orders = orderServiceClient.getOrders(userId);
         userDto.setOrders(orders);
 
         return userDto;

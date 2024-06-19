@@ -1,4 +1,4 @@
-package com.example.userservice.common.constants.jwt;
+package com.example.userservice.infra.jwt;
 
 import java.time.Duration;
 import lombok.AccessLevel;
