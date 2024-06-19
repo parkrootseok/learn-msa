@@ -1,5 +1,6 @@
 package com.example.userservice.domain.service;
 
+import com.example.userservice.common.client.OrderServiceClient;
 import com.example.userservice.common.constants.error.ErrorCode;
 import com.example.userservice.domain.exception.NotExistsUserException;
 import com.example.userservice.domain.model.dto.UserDto;
@@ -30,6 +31,7 @@ public class UserServiceImpl implements UserService {
 
     private final Environment env;
     private final RestTemplate restTemplate;
+    private final OrderServiceClient orderServiceClient;
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
 
@@ -81,15 +83,24 @@ public class UserServiceImpl implements UserService {
 
         UserDto userDto = new ModelMapper().map(userEntity, UserDto.class);
 
-        ResponseEntity<List<GetOrderResponse>> response = restTemplate
-                .exchange(
-                        String.format(env.getProperty("order-service.url.get-orders"), userId),
-                        HttpMethod.GET,
-                        null,
-                        new ParameterizedTypeReference<List<GetOrderResponse>>() {}
-                );
+        /**
+         * RestTemplate 방식
+         */
+//        ResponseEntity<List<GetOrderResponse>> response = restTemplate
+//                .exchange(
+//                        String.format(env.getProperty("order-service.url.get-orders"), userId),
+//                        HttpMethod.GET,
+//                        null,
+//                        new ParameterizedTypeReference<List<GetOrderResponse>>() {}
+//                );
+//        List<GetOrderResponse> orders = response.getBody();
 
-        userDto.setOrders(response.getBody());
+        /**
+         * OpenFeign 방식
+         */
+        List<GetOrderResponse> orders = orderServiceClient.getOrders(userId);
+
+        userDto.setOrders(orders);
 
         return userDto;
 
