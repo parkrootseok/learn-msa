@@ -1,0 +1,47 @@
+spring:
+  # Rabbit MQ 관련 설정
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: admin
+    password: '{cipher}AQA8fW4vUNf7IHCiibYVGSX/ytFLNr3kGZM53YMv1g0HgB8ko1NOulL9yDqo7y7n8qL/+2wd45PQ/AyYpvOrQb9VCfrzh+dDQh7TxMzenyc6G2ALvHJ6H1NFWQQJ/l4QnxBepRLrZMvMaFt4u1VznNFAr0indE65Fkr0dNFrZ2AF9GAbMB935AolCbMa9bU70E7VDNI0e+GXAFz9xJo/P9yMGynXKLIiLUuxgD820jhcq5GR4PhAG1ohI1reHk4WW30EIPpR9Dy45JvHOQfpFq1iJXtoveLxiXo/iDJaaNPyyyh/TcPed2+hFIU+KVfZ1TOdelwOtRiIOXrpD0DA9oinWS1cprYR7CCLB3hGd4+zEUctiJdiWTmh4QBUa5ncxrY='
+  # H2 관련 설정
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true
+      path: /h2-console
+  # DB 관련 설정
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password: '{cipher}AQC28w/vFEG15u9dgbWi/Z8jewz/NlWK3xzNMKu29xAqh4pOrRmRED5IkwoWHBDxE2RY+lgcgekynnckh5q0ipHpl1X9uQK42xxf1WGq0D56DgmQhvnlAFiqaKJR4YKXJQHvw+1aJaLgzBJl0m4bM7HDO5aRIgUPD39fsy0C0KVCdUxu4NZzLdyRjjMtjCL+kweNv6pqERbpW9TqpbyTPJalcn6iMGgsP7U0HNhlExCt/z0mn6O9AgRoV41zHdkDU/zA91wTjyoONUu83DfmPjJVkP6Mi3iEtMbjBohvf9/j1TiAUQF21yPNJYenGDP1KWph0mKuZF2fO9o0bbT20qUdv59v9XsTbcW86hefDasIqVBXq9gtCIxYCTaEvpWaccI='
+# eureka 관련 설정
+eureka:
+  instance:
+    # instance-id 설정
+    # - 기본적으로 yml파일에 있는 application name과 port 번호를 참조하여 인스터스 식별 수행
+    # - random Port를 사용하기 위해 0번으로 설정하면 동일한 인스턴스로 식별하기 때문에 추가 설정 필요
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+  client:
+    # Eureka 서버 등록 설정
+    register-with-eureka: true
+    # Eureka 서버에 등록된 인스턴스에 대한 정보 갱신 설정
+    fetch-registry: true
+    # Eureka 서버 위치 설정
+    service-url:
+      # 아래 설정한 Eureka 서버에 인스턴스 등록
+      defaultZone: http://127.0.0.1:8761/eureka
+
+# JWT 관련 설정
+jwt:
+    secret: '{cipher}AQBJndqGUTzogg6QFxaAKKJiwwyump5M3kgtZSHGUG6j4fJh9ErkX+YXt4lyU6qZRh/nKY2JkaDdE1n1F/+Rdia/JSrH+sCAVSrxCm26FBhBGNoMkkXV6wkt8w3YrzPB5Q4kaHo1xPoUepa8X91LAtvl7SL3gsmAq9yXBnBbWXN9rBHjbyueHABnkfc/omFh+HS0P30ah47JWHS5e+C4CujE2NCMi5n+uYhtuuCZ0k3Q1lDVa0sX3s2pbkNToz0/n6VQPxgcvU16AyM7KDxV3XC25QIaMe9lCn/73qJ6lA6c+82Udgx4fUkDEvW4H0RtsYc+OfJJ/VGoyVuNKRxGcAbzLG81vnp4YiJpZhrXB3ONc1o1Ra0zvpoJRfA88ezt9KsZ/LVx55bbrK0dv6HjfTZpRR5hZOX/mSIFyscuYxu2ud2fZg/UDZDE3So5uO2+LHwzDXuJZV+EKZvGDeGjC4ZsHB+CI80LkqSD+K5H6VvB/jdaopljKyuCATvNlzex96gwhrPolydr01u9L4319mUWsGwXASllHSVHZtnmMxhKcw=='
+    expiration:
+        access: 86400000
+        refresh: 2592000000
+
+gateway:
+    ip: '{cipher}AQBUcFpORCF/346yGVeLlyUAPQWvSfTok6iULjwOySKp3OCpYjpN5TziqS0Im/oZox7Iso+k/STanEirbCm3wXqOdKVnVR2xfVUKtGs9rLJsITRQxHycDPOtcS5zXgvX3CC3lKC/QJoi6Fb8aoZUeTTaBEiM4lz2axXhxFPLMTuOAT9Uv5ba6PXD4KVjmZpHW4dh9y0Dds8yFuO/Xc6ek0kqb64daR0Ul4cPdC3o1TwRhr2hesUvvqSZvG2ncqVBkzq+7jeYP1KThI/RkVwkUyDyynfY+tV2zt7VP+eEYZ73eCgVqvAAeBqBKFucqWPnBR5XMHYPhiPVIGYTUZq/LpMmWxt0Gnnvc8Sas21DcdtTuu0jkAHb+5j/9rNNChNOQX8='
