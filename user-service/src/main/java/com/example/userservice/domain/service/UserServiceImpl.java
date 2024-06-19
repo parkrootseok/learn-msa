@@ -1,23 +1,22 @@
 package com.example.userservice.domain.service;
 
-import com.example.userservice.common.client.OrderServiceClient;
-import com.example.userservice.common.constants.error.ErrorCode;
+import com.example.userservice.infra.openfeign.client.OrderServiceClient;
+import com.example.userservice.global.error.ErrorCode;
 import com.example.userservice.domain.exception.NotExistsUserException;
 import com.example.userservice.domain.model.dto.UserDto;
 import com.example.userservice.domain.model.entity.UserEntity;
 import com.example.userservice.domain.model.response.GetOrderResponse;
 import com.example.userservice.domain.repository.UserRepository;
+import feign.FeignException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.core.env.Environment;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -25,6 +24,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
@@ -73,7 +73,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto getUserByUserId(String userId) {
+    public UserDto getUserByUserId(String userId) throws FeignException {
 
         UserEntity userEntity =  userRepository.findByUserId(userId);
 
@@ -99,7 +99,6 @@ public class UserServiceImpl implements UserService {
          * OpenFeign 방식
          */
         List<GetOrderResponse> orders = orderServiceClient.getOrders(userId);
-
         userDto.setOrders(orders);
 
         return userDto;

@@ -1,14 +1,11 @@
-package com.example.userservice.common.util;
+package com.example.userservice.infra.jwt;
 
-import static com.example.userservice.common.constants.jwt.TokenType.ACCESS_TOKEN;
-import static com.example.userservice.common.constants.jwt.TokenType.REFRESH_TOKEN;
+import static com.example.userservice.infra.jwt.TokenType.ACCESS_TOKEN;
+import static com.example.userservice.infra.jwt.TokenType.REFRESH_TOKEN;
 
-import com.example.userservice.common.constants.jwt.TokenType;
-import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import java.nio.charset.StandardCharsets;
-import java.security.Key;
 import java.util.Date;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

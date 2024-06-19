@@ -1,12 +1,11 @@
-package com.example.userservice.common.filter.security;
+package com.example.userservice.global.filter.security;
 
-import com.example.userservice.common.util.JwtUtil;
+import com.example.userservice.infra.jwt.JwtUtil;
 import com.example.userservice.domain.model.dto.UserDto;
 import com.example.userservice.domain.model.request.LoginUserRequest;
 import com.example.userservice.domain.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.FilterChain;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
