@@ -92,7 +92,6 @@ public class WebSecurityConfig {
     }
 
     private AuthorizationDecision hasIpAddress(Supplier<Authentication> authentication, RequestAuthorizationContext context) {
-        System.out.println(env.getProperty("gateway.ip"));
         return new AuthorizationDecision(new IpAddressMatcher(env.getProperty("gateway.ip") + SUBNET).matches(context.getRequest()));
     }
 
