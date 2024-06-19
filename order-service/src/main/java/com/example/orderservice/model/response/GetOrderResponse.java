@@ -14,6 +14,6 @@ public class GetOrderResponse {
     private Integer quantity;
     private Integer price;
     private Integer totalPrice;
-    private Date createAt;
+    private Date createdAt;
 
 }

@@ -1,7 +1,7 @@
 package com.example.orderservice.controller;
 
 import com.example.orderservice.model.dto.OrderDto;
-import com.example.orderservice.model.entity.Order;
+import com.example.orderservice.model.entity.OrderEntity;
 import com.example.orderservice.model.request.CreateOrderRequest;
 import com.example.orderservice.model.response.CreateOrderResponse;
 import com.example.orderservice.model.response.GetOrderResponse;
@@ -63,11 +63,11 @@ public class OrderController {
         ModelMapper mapper = new ModelMapper();
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 
-        Iterable<Order> orders = orderService.getOrdersByUserId(userId);
+        Iterable<OrderEntity> orders = orderService.getOrdersByUserId(userId);
 
         List<GetOrderResponse> response = new ArrayList<>();
         orders.forEach(
-                order -> response.add(mapper.map(order, GetOrderResponse.class))
+                orderEntity -> response.add(mapper.map(orderEntity, GetOrderResponse.class))
         );
 
         return ResponseEntity

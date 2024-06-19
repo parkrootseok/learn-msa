@@ -9,8 +9,8 @@ public class GetOrderResponse {
     private String orderId;
     private String productId;
     private Integer quantity;
-    private Integer unitPrice;
+    private Integer price;
     private Integer totalPrice;
-    private Date createAt;
+    private Date createdAt;
 
 }
