@@ -20,7 +20,7 @@ spring:
 
 logging:
   level:
-    com.example.userservice: DEBUG
+    com.example.userservice.common.client: DEBUG
 
 # actuator 관련 설정
 management:
