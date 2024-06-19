@@ -3,4 +3,4 @@ profile:
 
 order-service:
     url:
-        get-orders: http://order-service/order-service/%s/orders 
+        get-orders: http://ORDER-SERVICE/order-service/%s/orders 
