@@ -1,7 +1,7 @@
 package com.example.orderservice.service;
 
 import com.example.orderservice.model.dto.OrderDto;
-import com.example.orderservice.model.entity.Order;
+import com.example.orderservice.model.entity.OrderEntity;
 import com.example.orderservice.repository.OrderRepository;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
@@ -25,11 +25,11 @@ public class OrderServiceImpl implements OrderService {
 
         orderDto.setOrderId(UUID.randomUUID().toString());
         orderDto.setTotalPrice(orderDto.getPrice() * orderDto.getQuantity());
-        Order order = mapper.map(orderDto, Order.class);
+        OrderEntity orderEntity = mapper.map(orderDto, OrderEntity.class);
 
-        orderRepository.save(order);
+        orderRepository.save(orderEntity);
 
-        return mapper.map(order, OrderDto.class);
+        return mapper.map(orderEntity, OrderDto.class);
 
     }
 
@@ -39,14 +39,14 @@ public class OrderServiceImpl implements OrderService {
         ModelMapper mapper = new ModelMapper();
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 
-        Order order = orderRepository.findByOrderId(orderId);
+        OrderEntity orderEntity = orderRepository.findByOrderId(orderId);
 
-        return mapper.map(order, OrderDto.class);
+        return mapper.map(orderEntity, OrderDto.class);
 
     }
 
     @Override
-    public Iterable<Order> getOrdersByUserId(String userId) {
+    public Iterable<OrderEntity> getOrdersByUserId(String userId) {
         return orderRepository.findByUserId(userId);
     }
 
