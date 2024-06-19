@@ -1,14 +1,13 @@
 package com.example.userservice;
 
-import org.modelmapper.ModelMapper;
-import org.modelmapper.convention.MatchingStrategies;
+import feign.Logger;
+import feign.Logger.Level;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Scope;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.client.RestTemplate;
@@ -45,6 +44,14 @@ public class UserServiceApplication {
 	@LoadBalanced
 	public RestTemplate restTemplate() {
 		return new RestTemplate();
+	}
+
+	/**
+	 * OpenFeign은 기본적으로 로깅을 하지 않기 때문에 다음과 같이 Logger Level 설정 주입 필요
+	 */
+	@Bean
+	public Logger.Level feignLoggerLevel() {
+		return Level.FULL;
 	}
 
 }
