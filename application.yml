@@ -1,4 +1,7 @@
 spring:
+  # config 관련 설정
+  config:
+    import: optional:configserver:http://localhost:8888
   # Rabbit MQ 관련 설정
   rabbitmq:
     host: localhost
