@@ -14,7 +14,7 @@ import org.hibernate.annotations.ColumnDefault;
 @Data
 @Entity
 @Table(name = "catalogs")
-public class Catalog implements Serializable {
+public class CatalogEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

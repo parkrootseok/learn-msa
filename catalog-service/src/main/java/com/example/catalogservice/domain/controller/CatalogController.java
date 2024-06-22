@@ -1,6 +1,6 @@
 package com.example.catalogservice.domain.controller;
 
-import com.example.catalogservice.domain.model.entity.Catalog;
+import com.example.catalogservice.domain.model.entity.CatalogEntity;
 import com.example.catalogservice.domain.model.response.GetCatalogResponse;
 import com.example.catalogservice.domain.service.CatalogService;
 import java.util.ArrayList;
@@ -36,11 +36,11 @@ public class CatalogController {
         ModelMapper mapper = new ModelMapper();
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 
-        Iterable<Catalog> catalogs = catalogService.getAllCatalogs();
+        Iterable<CatalogEntity> catalogs = catalogService.getAllCatalogs();
 
         List<GetCatalogResponse> response = new ArrayList<>();
         catalogs.forEach(
-                catalog -> response.add(mapper.map(catalog, GetCatalogResponse.class))
+                catalogEntity -> response.add(mapper.map(catalogEntity, GetCatalogResponse.class))
         );
 
         return ResponseEntity
