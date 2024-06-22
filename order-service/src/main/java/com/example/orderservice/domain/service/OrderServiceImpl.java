@@ -1,8 +1,8 @@
-package com.example.orderservice.service;
+package com.example.orderservice.domain.service;
 
-import com.example.orderservice.model.dto.OrderDto;
-import com.example.orderservice.model.entity.OrderEntity;
-import com.example.orderservice.repository.OrderRepository;
+import com.example.orderservice.domain.model.dto.OrderDto;
+import com.example.orderservice.domain.model.entity.OrderEntity;
+import com.example.orderservice.domain.repository.OrderRepository;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,4 +1,4 @@
-package com.example.orderservice.model.request;
+package com.example.orderservice.domain.model.request;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.Date;

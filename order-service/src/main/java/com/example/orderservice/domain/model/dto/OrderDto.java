@@ -1,4 +1,4 @@
-package com.example.orderservice.model.dto;
+package com.example.orderservice.domain.model.dto;
 
 import lombok.Data;
 

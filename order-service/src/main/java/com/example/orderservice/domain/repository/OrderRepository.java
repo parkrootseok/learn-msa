@@ -1,6 +1,6 @@
-package com.example.orderservice.repository;
+package com.example.orderservice.domain.repository;
 
-import com.example.orderservice.model.entity.OrderEntity;
+import com.example.orderservice.domain.model.entity.OrderEntity;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

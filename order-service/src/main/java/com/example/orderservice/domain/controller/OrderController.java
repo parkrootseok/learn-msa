@@ -1,11 +1,11 @@
-package com.example.orderservice.controller;
+package com.example.orderservice.domain.controller;
 
-import com.example.orderservice.model.dto.OrderDto;
-import com.example.orderservice.model.entity.OrderEntity;
-import com.example.orderservice.model.request.CreateOrderRequest;
-import com.example.orderservice.model.response.CreateOrderResponse;
-import com.example.orderservice.model.response.GetOrderResponse;
-import com.example.orderservice.service.OrderService;
+import com.example.orderservice.domain.model.dto.OrderDto;
+import com.example.orderservice.domain.model.entity.OrderEntity;
+import com.example.orderservice.domain.model.request.CreateOrderRequest;
+import com.example.orderservice.domain.service.OrderService;
+import com.example.orderservice.domain.model.response.CreateOrderResponse;
+import com.example.orderservice.domain.model.response.GetOrderResponse;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;

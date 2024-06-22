@@ -1,6 +1,6 @@
-package com.example.orderservice.exception;
+package com.example.orderservice.global.exception;
 
-import com.example.orderservice.error.ErrorCode;
+import com.example.orderservice.global.error.ErrorCode;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
