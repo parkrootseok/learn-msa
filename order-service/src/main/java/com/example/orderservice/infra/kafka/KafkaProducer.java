@@ -20,12 +20,14 @@ public class KafkaProducer {
         ObjectMapper mapper = new ObjectMapper();
         String jsonString = "";
 
+        /* 전송할 Entity에 대한 Dto를 JSON 형태로 직렬화 */
         try {
             jsonString = mapper.writeValueAsString(orderDto);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
 
+        /* 명시한 topic으로 전달 */
         kafkaTemplate.send(topic, jsonString);
         log.info("Kafka Producer sent data from order Microservice: {}", orderDto);
 

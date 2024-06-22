@@ -22,10 +22,10 @@ public class KafkaConsumer {
 
     @KafkaListener(topics = "catalog-topic")
     public void updateQuantity(String message) {
-        // catalog topic message 출력
+        /* catalog topic message 출력 */
         log.info("kafka message: -> {}", message);
 
-        // catalog topic message를 읽어 map에 저장
+        /* catalog topic message를 읽어 map에 저장 */
         Map<Object, Object> map = new HashMap<>();
         ObjectMapper mapper = new ObjectMapper();
 
@@ -35,7 +35,7 @@ public class KafkaConsumer {
             e.printStackTrace();
         }
 
-        // map에 저장된 값들을 반영
+        /* map에 저장된 값들을 반영 */
         CatalogEntity catalog = catalogRepository.findByProductId((String) map.get("productId"));
         if (!Objects.isNull(catalog)) {
             catalog.setStock(catalog.getStock() - (Integer) map.get("quantity"));
@@ -43,6 +43,5 @@ public class KafkaConsumer {
         }
 
     }
-
 
 }
