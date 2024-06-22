@@ -1,4 +1,4 @@
-package com.example.catalogservice.model.response;
+package com.example.catalogservice.domain.model.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.Date;

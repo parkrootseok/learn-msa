@@ -1,10 +1,9 @@
-package com.example.catalogservice.service;
+package com.example.catalogservice.domain.service;
 
-import com.example.catalogservice.model.entity.Catalog;
-import com.example.catalogservice.repository.CatalogRepository;
+import com.example.catalogservice.domain.model.entity.Catalog;
+import com.example.catalogservice.domain.repository.CatalogRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Slf4j

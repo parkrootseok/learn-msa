@@ -1,4 +1,4 @@
-package com.example.catalogservice.error;
+package com.example.catalogservice.global.error;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

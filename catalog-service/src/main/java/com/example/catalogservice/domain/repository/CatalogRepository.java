@@ -1,6 +1,6 @@
-package com.example.catalogservice.repository;
+package com.example.catalogservice.domain.repository;
 
-import com.example.catalogservice.model.entity.Catalog;
+import com.example.catalogservice.domain.model.entity.Catalog;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

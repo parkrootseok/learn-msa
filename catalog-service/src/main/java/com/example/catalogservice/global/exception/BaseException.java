@@ -1,6 +1,6 @@
-package com.example.catalogservice.exception;
+package com.example.catalogservice.global.exception;
 
-import com.example.catalogservice.error.ErrorCode;
+import com.example.catalogservice.global.error.ErrorCode;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

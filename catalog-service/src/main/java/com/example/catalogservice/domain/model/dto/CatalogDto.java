@@ -1,4 +1,4 @@
-package com.example.catalogservice.model.dto;
+package com.example.catalogservice.domain.model.dto;
 
 import java.io.Serializable;
 import lombok.Data;

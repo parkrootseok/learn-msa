@@ -1,8 +1,8 @@
-package com.example.catalogservice.controller;
+package com.example.catalogservice.domain.controller;
 
-import com.example.catalogservice.model.entity.Catalog;
-import com.example.catalogservice.model.response.GetCatalogResponse;
-import com.example.catalogservice.service.CatalogService;
+import com.example.catalogservice.domain.model.entity.Catalog;
+import com.example.catalogservice.domain.model.response.GetCatalogResponse;
+import com.example.catalogservice.domain.service.CatalogService;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
