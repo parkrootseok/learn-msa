@@ -23,7 +23,7 @@ public class KafkaConsumer {
     @KafkaListener(topics = "catalog-topic")
     public void updateQuantity(String message) {
         // catalog topic message 출력
-        log.info("kafka message: ->", message);
+        log.info("kafka message: -> {}", message);
 
         // catalog topic message를 읽어 map에 저장
         Map<Object, Object> map = new HashMap<>();

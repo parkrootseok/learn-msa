@@ -19,13 +19,13 @@ public class KafkaConsumerConfig {
     public ConsumerFactory<String, String> consumerFactory() {
         Map<String, Object> props = new HashMap<>();
 
-        // kafka Server 주소
+        /* kafka Server 주소 */
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
 
-        // 토픽에 쌓여있는 메시지를 가져가는 Consumer들에 대한 Grouping을 위한 설정
+        /* 토픽에 쌓여있는 메시지를 가져가는 Consumer들에 대한 Grouping을 위한 설정 */
         props.put(ConsumerConfig.GROUP_ID_CONFIG, "consumer-group-id");
 
-        // 역직렬화 클래스 타입 설정
+        /* 역직렬화 클래스 타입 설정 */
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
 
