@@ -17,21 +17,22 @@ public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository orderRepository;
 
-    @Override
-    public OrderDto createOrder(OrderDto orderDto) {
-
-        ModelMapper mapper = new ModelMapper();
-        mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-
-        orderDto.setOrderId(UUID.randomUUID().toString());
-        orderDto.setTotalPrice(orderDto.getPrice() * orderDto.getQuantity());
-        OrderEntity orderEntity = mapper.map(orderDto, OrderEntity.class);
-
-        orderRepository.save(orderEntity);
-
-        return mapper.map(orderEntity, OrderDto.class);
-
-    }
+    /**
+     * kafka를 활용하여 DB에 저장하므로 아래 코드는 불필요
+     */
+//    @Override
+//    public OrderDto createOrder(OrderDto orderDto) {
+//
+//        ModelMapper mapper = new ModelMapper();
+//        mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+//
+//        orderDto.setOrderId(UUID.randomUUID().toString());
+//        orderDto.setTotalPrice(orderDto.getPrice() * orderDto.getQuantity());
+//        orderRepository.save(orderEntity);
+//
+//        return orderDto;
+//
+//    }
 
     @Override
     public OrderDto getOrderByOrderId(String orderId) {

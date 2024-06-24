@@ -1,4 +1,4 @@
-package com.example.orderservice.infra.kafka;
+package com.example.orderservice.infra.kafka.producer;
 
 import com.example.orderservice.domain.model.dto.OrderDto;
 import com.fasterxml.jackson.core.JsonProcessingException;
