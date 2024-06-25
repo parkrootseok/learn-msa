@@ -1,4 +1,4 @@
-package com.example.userservice.global.config.security;
+package com.example.userservice.global.config;
 
 import com.example.userservice.global.filter.security.AuthenticationFilter;
 import com.example.userservice.infra.jwt.JwtUtil;
