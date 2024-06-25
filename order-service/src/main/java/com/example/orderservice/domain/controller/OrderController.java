@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.core.env.Environment;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Slf4j
 @RestController
 @RequestMapping("/order-service")
 @RequiredArgsConstructor
@@ -47,6 +49,8 @@ public class OrderController {
             @RequestBody CreateOrderRequest createOrderRequest
     ) {
 
+        log.info("Before add orders data");
+
         /* create order */
         ModelMapper mapper = new ModelMapper();
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
@@ -62,6 +66,8 @@ public class OrderController {
 
         CreateOrderResponse response = mapper.map(orderDto, CreateOrderResponse.class);
 
+        log.info("After add orders data");
+
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(response);
@@ -69,8 +75,9 @@ public class OrderController {
     }
 
     @GetMapping("/{userId}/orders")
-    public ResponseEntity<List<GetOrderResponse>> getOrders(@PathVariable("userId") String userId) {
+    public ResponseEntity<List<GetOrderResponse>> getOrders(@PathVariable("userId") String userId) throws Exception {
 
+        log.info("Before retrieve orders data");
         ModelMapper mapper = new ModelMapper();
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 
@@ -80,6 +87,15 @@ public class OrderController {
         orders.forEach(
                 orderEntity -> response.add(mapper.map(orderEntity, GetOrderResponse.class))
         );
+
+//        try {
+//            Thread.sleep(1000);
+//            throw new Exception("장애 발생");
+//        } catch (InterruptedException e) {
+//            log.warn(e.getMessage());
+//        }
+
+        log.info("After retrieve orders data");
 
         return ResponseEntity
                 .status(HttpStatus.OK)

@@ -107,11 +107,14 @@ public class UserServiceImpl implements UserService {
         /**
          * Circuitbreaker를 활용하여 호출
          */
+        log.info("Before call orders mircroservice");
         CircuitBreaker circuitBreaker = circuitBreakerFactory.create("circuit-breaker");
         List<GetOrderResponse> orders = circuitBreaker.run(
                 () -> orderServiceClient.getOrders(userId),
                 throwable -> new ArrayList<>()
         );
+        log.info("After call orders mircroservice");
+
         userDto.setOrders(orders);
 
         return userDto;
