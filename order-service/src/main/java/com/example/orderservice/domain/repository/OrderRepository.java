@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 public interface OrderRepository extends CrudRepository<OrderEntity, Long> {
 
     OrderEntity findByOrderId(String orderId);
+
     Iterable<OrderEntity> findByUserId(String userId);
 
 }

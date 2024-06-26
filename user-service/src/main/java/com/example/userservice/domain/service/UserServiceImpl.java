@@ -1,14 +1,13 @@
 package com.example.userservice.domain.service;
 
-import com.example.userservice.infra.openfeign.client.OrderServiceClient;
-import com.example.userservice.global.error.ErrorCode;
 import com.example.userservice.domain.exception.NotExistsUserException;
 import com.example.userservice.domain.model.dto.UserDto;
 import com.example.userservice.domain.model.entity.UserEntity;
 import com.example.userservice.domain.model.response.GetOrderResponse;
 import com.example.userservice.domain.repository.UserRepository;
+import com.example.userservice.global.error.ErrorCode;
+import com.example.userservice.infra.openfeign.client.OrderServiceClient;
 import feign.FeignException;
-import io.github.resilience4j.circuitbreaker.CircuitBreaker.CircuitBreakerFuture;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -79,7 +78,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto getUserByUserId(String userId) throws FeignException {
 
-        UserEntity userEntity =  userRepository.findByUserId(userId);
+        UserEntity userEntity = userRepository.findByUserId(userId);
 
         if (Objects.isNull(userEntity)) {
             throw new NotExistsUserException(ErrorCode.NOT_EXISTS_USER);

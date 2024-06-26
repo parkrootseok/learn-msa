@@ -1,4 +1,4 @@
-package com.example.apigatewayservice.common.util;
+package com.example.apigatewayservice.global.util;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;

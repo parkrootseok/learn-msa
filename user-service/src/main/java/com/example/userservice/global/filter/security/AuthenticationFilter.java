@@ -1,9 +1,9 @@
 package com.example.userservice.global.filter.security;
 
-import com.example.userservice.infra.jwt.JwtUtil;
 import com.example.userservice.domain.model.dto.UserDto;
 import com.example.userservice.domain.model.request.LoginUserRequest;
 import com.example.userservice.domain.service.UserService;
+import com.example.userservice.infra.jwt.JwtUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.http.HttpServletRequest;
@@ -33,8 +33,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     }
 
     /**
-     * [ attemptAuthentication ]
-     * - 사용자의 요청에 대한 인증 작업을 수행
+     * [ attemptAuthentication ] - 사용자의 요청에 대한 인증 작업을 수행
      */
     @Override
     public Authentication attemptAuthentication(
@@ -44,7 +43,8 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
         try {
 
-            LoginUserRequest credential = new ObjectMapper().readValue(request.getInputStream(), LoginUserRequest.class);
+            LoginUserRequest credential = new ObjectMapper().readValue(request.getInputStream(),
+                    LoginUserRequest.class);
 
             // 인자로 받은 정보를 참조하여 인증 작업 수행
             return getAuthenticationManager().authenticate(
@@ -63,8 +63,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     }
 
     /**
-     * [ successfulAuthentication ]
-     * - 사용자에 대한 인증이 성공한 후 처리 동작을 정의 ex) 토큰 생성 등등
+     * [ successfulAuthentication ] - 사용자에 대한 인증이 성공한 후 처리 동작을 정의 ex) 토큰 생성 등등
      */
     @Override
     protected void successfulAuthentication(

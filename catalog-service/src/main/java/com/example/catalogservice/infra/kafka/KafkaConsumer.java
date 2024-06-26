@@ -30,7 +30,8 @@ public class KafkaConsumer {
         ObjectMapper mapper = new ObjectMapper();
 
         try {
-            map = mapper.readValue(message, new TypeReference<Map<Object, Object>>() {});
+            map = mapper.readValue(message, new TypeReference<Map<Object, Object>>() {
+            });
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }

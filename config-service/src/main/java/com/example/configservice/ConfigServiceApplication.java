@@ -5,8 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.config.server.EnableConfigServer;
 
 /**
- * [ EnableConfigServer ]
- * - 해당 프로젝트를 Config Server로 등록하기 위한 어노테이션
+ * [ EnableConfigServer ] - 해당 프로젝트를 Config Server로 등록하기 위한 어노테이션
  */
 @EnableConfigServer
 @SpringBootApplication

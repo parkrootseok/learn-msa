@@ -4,6 +4,6 @@ import com.example.catalogservice.domain.model.entity.CatalogEntity;
 
 public interface CatalogService {
 
-    Iterable<CatalogEntity>  getAllCatalogs();
+    Iterable<CatalogEntity> getAllCatalogs();
 
 }

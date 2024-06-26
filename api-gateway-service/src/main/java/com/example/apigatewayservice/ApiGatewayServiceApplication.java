@@ -9,13 +9,13 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class ApiGatewayServiceApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(ApiGatewayServiceApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(ApiGatewayServiceApplication.class, args);
+    }
 
-	@Bean
-	public HttpExchangeRepository httpExchangeRepository() {
-		return new InMemoryHttpExchangeRepository();
-	}
+    @Bean
+    public HttpExchangeRepository httpExchangeRepository() {
+        return new InMemoryHttpExchangeRepository();
+    }
 
 }

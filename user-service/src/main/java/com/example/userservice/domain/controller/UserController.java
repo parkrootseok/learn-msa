@@ -35,11 +35,14 @@ public class UserController {
         StringBuilder sb = new StringBuilder();
         sb.append("It's working in user service. </br>");
         sb.append("active profile: " + env.getProperty("profile.name")).append("</br>");
-        sb.append("PORT(local.server.port): " + env.getProperty("local.server.port")).append("</br>");
+        sb.append("PORT(local.server.port): " + env.getProperty("local.server.port"))
+                .append("</br>");
         sb.append("PORT(server.port): " + env.getProperty("server.port")).append("</br>");
         sb.append("token secret: " + env.getProperty("jwt.secret")).append("</br>");
-        sb.append("access token expiration time: " + env.getProperty("jwt.expiration.access")).append("</br>");
-        sb.append("refresh token expiration time: " + env.getProperty("jwt.expiration.refresh")).append("</br>");
+        sb.append("access token expiration time: " + env.getProperty("jwt.expiration.access"))
+                .append("</br>");
+        sb.append("refresh token expiration time: " + env.getProperty("jwt.expiration.refresh"))
+                .append("</br>");
         sb.append("api gateway: " + env.getProperty("gateway.ip")).append("</br>");
 
         return sb.toString();
@@ -47,12 +50,14 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity<CreateUserResponse> createUser(@RequestBody CreateUserRequest createUserRequest) {
+    public ResponseEntity<CreateUserResponse> createUser(
+            @RequestBody CreateUserRequest createUserRequest) {
 
         ModelMapper mapper = new ModelMapper();
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 
-        UserDto createUserDto = userService.createUser(mapper.map(createUserRequest, UserDto.class));
+        UserDto createUserDto = userService.createUser(
+                mapper.map(createUserRequest, UserDto.class));
         CreateUserResponse createUserResponse = mapper.map(createUserDto, CreateUserResponse.class);
 
         return ResponseEntity

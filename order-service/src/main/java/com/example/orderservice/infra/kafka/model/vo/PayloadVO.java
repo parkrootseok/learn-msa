@@ -17,7 +17,8 @@ public class PayloadVO {
     private int total_price;
 
     @Builder
-    public PayloadVO(String orderId, String userId, String productId, int quantity, int price, int totalPrice) {
+    public PayloadVO(String orderId, String userId, String productId, int quantity, int price,
+            int totalPrice) {
         this.order_id = orderId;
         this.user_id = userId;
         this.product_id = productId;

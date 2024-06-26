@@ -1,8 +1,8 @@
 package com.example.orderservice.infra.kafka.producer;
 
-import com.example.orderservice.infra.kafka.model.vo.FieldVO;
-import com.example.orderservice.infra.kafka.model.dto.KafkaOrderDto;
 import com.example.orderservice.domain.model.dto.OrderDto;
+import com.example.orderservice.infra.kafka.model.dto.KafkaOrderDto;
+import com.example.orderservice.infra.kafka.model.vo.FieldVO;
 import com.example.orderservice.infra.kafka.model.vo.PayloadVO;
 import com.example.orderservice.infra.kafka.model.vo.SchemaVO;
 import com.fasterxml.jackson.core.JsonProcessingException;
