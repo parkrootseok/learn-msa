@@ -6,6 +6,7 @@ import com.example.userservice.domain.model.request.CreateUserRequest;
 import com.example.userservice.domain.model.response.CreateUserResponse;
 import com.example.userservice.domain.model.response.GetUserResponse;
 import com.example.userservice.domain.service.UserService;
+import io.micrometer.core.annotation.Timed;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -29,23 +30,20 @@ public class UserController {
     private final Environment env;
     private final UserService userService;
 
+    @Timed(value = "users.status", longTask = true)
     @GetMapping("/health-check")
     public String status() {
 
-        StringBuilder sb = new StringBuilder();
-        sb.append("It's working in user service. </br>");
-        sb.append("active profile: " + env.getProperty("profile.name")).append("</br>");
-        sb.append("PORT(local.server.port): " + env.getProperty("local.server.port"))
-                .append("</br>");
-        sb.append("PORT(server.port): " + env.getProperty("server.port")).append("</br>");
-        sb.append("token secret: " + env.getProperty("jwt.secret")).append("</br>");
-        sb.append("access token expiration time: " + env.getProperty("jwt.expiration.access"))
-                .append("</br>");
-        sb.append("refresh token expiration time: " + env.getProperty("jwt.expiration.refresh"))
-                .append("</br>");
-        sb.append("api gateway: " + env.getProperty("gateway.ip")).append("</br>");
-
-        return sb.toString();
+        return new StringBuilder()
+                .append("It's working in user service.").append("</br>")
+                .append("active profile: ").append(env.getProperty("profile.name")).append("</br>")
+                .append("PORT(local.server.port): ").append(env.getProperty("local.server.port")).append("</br>")
+                .append("PORT(server.port): ").append(env.getProperty("server.port")).append("</br>")
+                .append("token secret: ").append(env.getProperty("jwt.secret")).append("</br>")
+                .append("access token expiration time: ").append(env.getProperty("jwt.expiration.access")).append("</br>")
+                .append("refresh token expiration time: ").append(env.getProperty("jwt.expiration.refresh")).append("</br>")
+                .append("api gateway: ").append(env.getProperty("gateway.ip")).append("</br>")
+                .toString();
 
     }
 
