@@ -1,8 +1,8 @@
 package com.example.userservice.global.config;
 
+import com.example.userservice.domain.service.UserService;
 import com.example.userservice.global.filter.security.AuthenticationFilter;
 import com.example.userservice.infra.jwt.JwtUtil;
-import com.example.userservice.domain.service.UserService;
 import java.util.function.Supplier;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -49,7 +49,8 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    protected SecurityFilterChain configure(HttpSecurity httpSecurity, AuthenticationManager authenticationManager) throws Exception {
+    protected SecurityFilterChain configure(HttpSecurity httpSecurity,
+            AuthenticationManager authenticationManager) throws Exception {
 
         return httpSecurity
 
@@ -80,9 +81,8 @@ public class WebSecurityConfig {
     }
 
     /**
-     * [ AuthenticationManager ]
-     * - AuthenticationConfiguration를 통해 Bean 등록
-     * - userDetailService, PasswordEncoder는 Spring Security 6부터 자동 주입
+     * [ AuthenticationManager ] - AuthenticationConfiguration를 통해 Bean 등록 - userDetailService,
+     * PasswordEncoder는 Spring Security 6부터 자동 주입
      */
     @Bean
     public AuthenticationManager authenticationManager(
@@ -91,11 +91,15 @@ public class WebSecurityConfig {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
-    private AuthorizationDecision hasIpAddress(Supplier<Authentication> authentication, RequestAuthorizationContext context) {
-        return new AuthorizationDecision(new IpAddressMatcher(env.getProperty("gateway.ip") + SUBNET).matches(context.getRequest()));
+    private AuthorizationDecision hasIpAddress(Supplier<Authentication> authentication,
+            RequestAuthorizationContext context) {
+        return new AuthorizationDecision(
+                new IpAddressMatcher(env.getProperty("gateway.ip") + SUBNET).matches(
+                        context.getRequest()));
     }
 
-    private AuthenticationFilter getAuthenticationFilter(AuthenticationManager authenticationManager) {
+    private AuthenticationFilter getAuthenticationFilter(
+            AuthenticationManager authenticationManager) {
         return new AuthenticationFilter(authenticationManager, userService, jwtUtil);
     }
 

@@ -3,7 +3,6 @@ package com.example.orderservice.domain.service;
 import com.example.orderservice.domain.model.dto.OrderDto;
 import com.example.orderservice.domain.model.entity.OrderEntity;
 import com.example.orderservice.domain.repository.OrderRepository;
-import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;

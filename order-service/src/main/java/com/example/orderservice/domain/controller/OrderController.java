@@ -3,9 +3,9 @@ package com.example.orderservice.domain.controller;
 import com.example.orderservice.domain.model.dto.OrderDto;
 import com.example.orderservice.domain.model.entity.OrderEntity;
 import com.example.orderservice.domain.model.request.CreateOrderRequest;
-import com.example.orderservice.domain.service.OrderService;
 import com.example.orderservice.domain.model.response.CreateOrderResponse;
 import com.example.orderservice.domain.model.response.GetOrderResponse;
+import com.example.orderservice.domain.service.OrderService;
 import com.example.orderservice.infra.kafka.producer.KafkaProducer;
 import com.example.orderservice.infra.kafka.producer.OrderProducer;
 import java.util.ArrayList;
@@ -39,7 +39,8 @@ public class OrderController {
     @GetMapping("/health-check")
     public String status() {
 
-        return String.format("It's working in order service on PORT %s", env.getProperty("local.server.port"));
+        return String.format("It's working in order service on PORT %s",
+                env.getProperty("local.server.port"));
 
     }
 
@@ -75,7 +76,8 @@ public class OrderController {
     }
 
     @GetMapping("/{userId}/orders")
-    public ResponseEntity<List<GetOrderResponse>> getOrders(@PathVariable("userId") String userId) throws Exception {
+    public ResponseEntity<List<GetOrderResponse>> getOrders(@PathVariable("userId") String userId)
+            throws Exception {
 
         log.info("Before retrieve orders data");
         ModelMapper mapper = new ModelMapper();

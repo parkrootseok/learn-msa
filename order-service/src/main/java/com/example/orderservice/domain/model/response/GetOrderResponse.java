@@ -1,7 +1,6 @@
 package com.example.orderservice.domain.model.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import jakarta.persistence.criteria.CriteriaBuilder.In;
 import java.util.Date;
 import lombok.Data;
 

@@ -1,4 +1,4 @@
-package com.example.apigatewayservice.common.constants.error;
+package com.example.apigatewayservice.global.constants.error;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,8 +11,8 @@ public enum ErrorCode {
     /**
      * [ UNAUTHORIZED, 404 ]
      */
-    NOT_CONTAIN_AUTHORIZATION(HttpStatus.UNAUTHORIZED,"권한 정보가 포함되어 있지 않습니다."),
-    INVALID_TOKEN(HttpStatus.UNAUTHORIZED,"유효하지 않은 토큰입니다."),
+    NOT_CONTAIN_AUTHORIZATION(HttpStatus.UNAUTHORIZED, "권한 정보가 포함되어 있지 않습니다."),
+    INVALID_TOKEN(HttpStatus.UNAUTHORIZED, "유효하지 않은 토큰입니다."),
 
     /**
      * [ NOT FOUND, 404 ]

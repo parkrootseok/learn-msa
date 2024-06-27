@@ -1,8 +1,5 @@
 package com.example.userservice.domain.model.response;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data

@@ -25,7 +25,8 @@ public class JwtUtil {
                 .claim("token-type", ACCESS_TOKEN.getName())
                 .issuedAt(new Date())
                 .expiration(new Date(System.currentTimeMillis() + ACCESS_TOKEN.getExpirationTime()))
-                .signWith(Keys.hmacShaKeyFor(env.getProperty("jwt.secret").getBytes(StandardCharsets.UTF_8)))
+                .signWith(Keys.hmacShaKeyFor(
+                        env.getProperty("jwt.secret").getBytes(StandardCharsets.UTF_8)))
                 .compact();
     }
 
@@ -33,8 +34,10 @@ public class JwtUtil {
         return Jwts.builder()
                 .claim("token-type", REFRESH_TOKEN.getName())
                 .issuedAt(new Date())
-                .expiration(new Date(System.currentTimeMillis() + REFRESH_TOKEN.getExpirationTime()))
-                .signWith(Keys.hmacShaKeyFor(env.getProperty("jwt.secret").getBytes(StandardCharsets.UTF_8)))
+                .expiration(
+                        new Date(System.currentTimeMillis() + REFRESH_TOKEN.getExpirationTime()))
+                .signWith(Keys.hmacShaKeyFor(
+                        env.getProperty("jwt.secret").getBytes(StandardCharsets.UTF_8)))
                 .compact();
     }
 

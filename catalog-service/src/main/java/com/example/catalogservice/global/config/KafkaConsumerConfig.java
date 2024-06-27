@@ -12,8 +12,7 @@ import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 
 /**
- * [ @EnableKafka ]
- * - Kafka를 사용하기 위한 어노테이션
+ * [ @EnableKafka ] - Kafka를 사용하기 위한 어노테이션
  */
 @EnableKafka
 @Configuration

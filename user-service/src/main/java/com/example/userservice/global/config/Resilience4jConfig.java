@@ -17,15 +17,15 @@ public class Resilience4jConfig {
     public Customizer<Resilience4JCircuitBreakerFactory> circuitBreakerCustomizer() {
 
         CircuitBreakerConfig circuitBreakerConfig =
-            CircuitBreakerConfig.custom()
-                /* CircuitBreaker 실행 임계점 설정 (default : 50, 100번중 50번 실패할 경우 수행) */
-                .failureRateThreshold(4)
-                /* CircuitBreaker 실행 지속 시간 설정 (default : 60, 설정한 시간 이후 half-open) */
-                .waitDurationInOpenState(Duration.ofSeconds(1))
-                /* CircuitBreaker 결과 기록에 사용되는 유형 설정 (카운트 or 시간) */
-                .slidingWindowType(SlidingWindowType.COUNT_BASED)
-                /* CircuitBreaker 결과 기록에 사용되는 슬라이딩 크기 설정 (default : 100) */
-                .slidingWindowSize(2)
+                CircuitBreakerConfig.custom()
+                        /* CircuitBreaker 실행 임계점 설정 (default : 50, 100번중 50번 실패할 경우 수행) */
+                        .failureRateThreshold(4)
+                        /* CircuitBreaker 실행 지속 시간 설정 (default : 60, 설정한 시간 이후 half-open) */
+                        .waitDurationInOpenState(Duration.ofSeconds(1))
+                        /* CircuitBreaker 결과 기록에 사용되는 유형 설정 (카운트 or 시간) */
+                        .slidingWindowType(SlidingWindowType.COUNT_BASED)
+                        /* CircuitBreaker 결과 기록에 사용되는 슬라이딩 크기 설정 (default : 100) */
+                        .slidingWindowSize(2)
                         .build();
 
         TimeLimiterConfig timeLimiterConfig =

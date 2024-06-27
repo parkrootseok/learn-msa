@@ -1,6 +1,6 @@
-package com.example.apigatewayservice.common.exception;
+package com.example.apigatewayservice.global.exception;
 
-import com.example.apigatewayservice.common.constants.error.ErrorCode;
+import com.example.apigatewayservice.global.constants.error.ErrorCode;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

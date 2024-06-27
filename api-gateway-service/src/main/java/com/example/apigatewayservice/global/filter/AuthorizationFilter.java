@@ -1,11 +1,10 @@
-package com.example.apigatewayservice.common.filter;
+package com.example.apigatewayservice.global.filter;
 
-import com.example.apigatewayservice.common.constants.error.ErrorCode;
-import com.example.apigatewayservice.common.util.JwtUtil;
+import com.example.apigatewayservice.global.constants.error.ErrorCode;
+import com.example.apigatewayservice.global.util.JwtUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
-import org.springframework.core.env.Environment;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;

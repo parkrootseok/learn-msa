@@ -1,7 +1,5 @@
 package com.example.orderservice.domain.model.request;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import java.util.Date;
 import lombok.Data;
 
 @Data
