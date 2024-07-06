@@ -34,6 +34,7 @@ encrypt:
 
 #  비대칭키 방식
   key-store:
-    location: file://${user.home}/Desktop/programming/key-store/apiEncryptionKey.jks
+#    location: file://${user.home}/Desktop/programming/key-store/apiEncryptionKey.jks
+    location: file:/apiEncryptionKey.jks
     password: test1234
     alias: apiEncryptionKey
