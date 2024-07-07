@@ -3,8 +3,8 @@ spring:
   rabbitmq:
     host: localhost
     port: 5672
-    username: admin
-    password: '{cipher}AQA8fW4vUNf7IHCiibYVGSX/ytFLNr3kGZM53YMv1g0HgB8ko1NOulL9yDqo7y7n8qL/+2wd45PQ/AyYpvOrQb9VCfrzh+dDQh7TxMzenyc6G2ALvHJ6H1NFWQQJ/l4QnxBepRLrZMvMaFt4u1VznNFAr0indE65Fkr0dNFrZ2AF9GAbMB935AolCbMa9bU70E7VDNI0e+GXAFz9xJo/P9yMGynXKLIiLUuxgD820jhcq5GR4PhAG1ohI1reHk4WW30EIPpR9Dy45JvHOQfpFq1iJXtoveLxiXo/iDJaaNPyyyh/TcPed2+hFIU+KVfZ1TOdelwOtRiIOXrpD0DA9oinWS1cprYR7CCLB3hGd4+zEUctiJdiWTmh4QBUa5ncxrY='
+    username: guest
+    password: '{cipher}AQBxzZoRDK8zWPgSoehVaJw0XYrObvGYUfKrJS0SIawaFYaqrGlCefXEx7t8mJzbEV8FhZCR4dKB/5UdohtEnt2BbYjoJobVbXzby+q1lZELw9+IP02ZB+Xgu1lHMd82k+WC9L0cZWscydh7CYI1nTtksVN66d1dZpTyFLLKjkVkg11G8g78dArOtUMTa4PEv7DPRDVN3K/tQwlAi73sk8r/Ti0DA8EBokKwENwIQxr3WvUw5d36Xr5K6hS6VfAz7027n+In26Trdn+YO66UI5ColF6NSWT82zWeJiYGgwcLWjGJSkIk05rP0iARkXU7W+WMSckqmc9Vp47z3oWEfmQwFulJRYCsRCbzPbBa2GelkN4kxCoT3dJ7nMxejxnkrHI='
   # H2 관련 설정
   h2:
     console:
