@@ -23,7 +23,7 @@ public class KafkaConsumerConfig {
         Map<String, Object> props = new HashMap<>();
 
         /* kafka Server 주소 */
-        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "172.18.0.101:9092");
 
         /* 토픽에 쌓여있는 메시지를 가져가는 Consumer들에 대한 Grouping을 위한 설정 */
         props.put(ConsumerConfig.GROUP_ID_CONFIG, "consumer-group-id");
