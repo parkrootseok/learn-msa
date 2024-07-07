@@ -23,7 +23,7 @@ public class KafkaProducerConfig {
         Map<String, Object> props = new HashMap<>();
 
         /* kafka Server 주소 */
-        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "172.18.0.101:9092");
 
         /* 직렬화 클래스 타입 설정 */
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
